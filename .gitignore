@@ -1,0 +1,4 @@
+olympic/
+*.ipynb
+procfile
+__pycache__/
