@@ -9,14 +9,20 @@ import plotly.figure_factory as ff
 #
 olympics = pd.read_csv('athlete_events.csv')
 origin = pd.read_csv('noc_regions.csv')
-#
+
 # # Doing some basic preprocessing on the data
 df = pd.merge(olympics, origin, on='NOC', how='left')
 df = df.drop_duplicates()
 df = pd.concat((df, pd.get_dummies(df['Medal'])), axis=1)
 
+st.set_page_config(
+    page_title="Olympic Data Analysis",  
+    page_icon="images/logo.png",         
+    layout="wide"                       
+)
 
 st.sidebar.title('Olympics Analysis')
+st.sidebar.image('images/olympic.jpg', width=600)
 user_menu = st.sidebar.radio(
     'Elect an option',
     ('Medal Count', 'Player-by-Player Analysis', 'Regional Analysis', 'Comprehensive Analysis')
